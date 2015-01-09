@@ -17,7 +17,7 @@ var videos_youtube=document.getElementsByClassName("yt-fluid-thumb-link");
 for (var i=videos_youtube.length-1, node, a; i>-1; i--) {
 node=videos_youtube[i].parentNode;
 if (node.parentNode.parentNode.parentNode.childNodes[1].innerHTML.indexOf('http://convert2mp3.net/addon_call.php?url=')==-1)
-node.parentNode.parentNode.parentNode.childNodes[1].innerHTML=node.parentNode.parentNode.parentNode.childNodes[1].innerHTML+'<div style="margin-top:3px;"><a target="_blank" href="http://convert2mp3.net/addon_call.php?url='+node.childNodes[1].href+'&format=mp3">Скачать аудио</a> <a target="_blank" href="http://ru.savefrom.net/#url='+node.childNodes[1].href+'">Скачать видео</a></div>';
+node.parentNode.parentNode.parentNode.childNodes[1].innerHTML=node.parentNode.parentNode.parentNode.childNodes[1].innerHTML+'<div style="margin-top:3px;"><a target="_blank" href="http://convert2mp3.net/addon_call.php?url='+node.childNodes[0].href+'&format=mp3">Скачать аудио</a> <a target="_blank" href="http://ru.savefrom.net/#url='+node.childNodes[0].href+'">Скачать видео</a></div>';
 }}
 addlinktofeed(); 
 
