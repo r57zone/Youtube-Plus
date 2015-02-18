@@ -2,7 +2,7 @@
 // @name           Youtube Plus
 // @namespace      Youtube Plus
 // @description    Remove ads and tweaks
-// @version        0.4
+// @version        0.4.2
 // @author         https://github.com/r57zone/Youtube-Plus
 // @grant          none
 // @include        http://www.youtube.com/*
@@ -13,7 +13,7 @@
 if (document.location.href=='http://www.youtube.com/feed/subscriptions' || document.location.href=='https://www.youtube.com/feed/subscriptions') {
 
 function addlinktofeed(){
-var videos_youtube=document.getElementsByClassName("yt-fluid-thumb-link");
+var videos_youtube=document.getElementsByClassName('yt-fluid-thumb-link');
 for (var i=videos_youtube.length-1, node, a; i>-1; i--) {
 node=videos_youtube[i].parentNode;
 if (node.parentNode.parentNode.parentNode.childNodes[1].innerHTML.indexOf('http://convert2mp3.net/addon_call.php?url=')==-1)
@@ -36,27 +36,33 @@ var video_id=window.location.search.split('v=')[1];
 document.location.href='https://www.youtube.com/watch?v='+video_id.substring(0, video_id.indexOf('&'));
 }	
 	
+//Включение Flash вместо Html5	
+var script = document.createElement("script");
+script.type = "text/javascript";
+script.textContent = 'document.createElement("video").constructor.prototype.canPlayType = function(type){return ""}';
+document.documentElement.appendChild(script);	
+	
 //Удаление рекламы
 (function (fn) {
-if (document.readyState == "loading") {
-addEventListener("DOMContentLoaded", fn, false);
+if (document.readyState=="loading") {
+addEventListener("DOMContentLoaded",fn,false);
 }else{fn();}
 })(function () {
 try {
-var o = yt.playerConfig.args;
+var o=yt.playerConfig.args;
 for (var i in o) {
 if (o.hasOwnProperty(i) && /^(afv_)?ad/.test(i)) {
 delete o[i];}}
 } catch (e) {}
-var player = document.getElementById("movie_player");
-var clean_player = player.cloneNode(true);
-var flash_vars = player.getAttribute("flashvars");
-flash_vars = flash_vars.replace(/&ad[^&]+/g, "");
-flash_vars = flash_vars.replace("iv3_module=1", ""); //Удаление аннотации
+var player=document.getElementById("movie_player");
+var clean_player=player.cloneNode(true);
+var flash_vars=player.getAttribute("flashvars");
+flash_vars=flash_vars.replace(/&ad[^&]+/g, "");
+flash_vars=flash_vars.replace("iv3_module=1", ""); //Удаление аннотации
 clean_player.setAttribute("flashvars", flash_vars);
 player.parentNode.replaceChild(clean_player, player);
 });
-
+	
 //Добавление кнопок
 document.getElementById('watch-uploader-info').innerHTML='<button onclick="javascript:document.location=\'http://convert2mp3.net/addon_call.php?url=\'+document.location.href+\'&format=mp3\'" style="margin-bottom:8px;" role="button" type="submit" class="under-movie-div-button yt-uix-button yt-uix-button-text yt-uix-tooltip"><span>Скачать аудио</span></button><button onclick="javascript:window.location=\'http://ru.savefrom.net/#url='+document.URL+'\';" style="margin-bottom:8px;" role="button" class="under-movie-div-button yt-uix-button yt-uix-button-text yt-uix-tooltip"><span>Скачать видео</span></button><div style="float:none;"></div>'+document.getElementById('watch-uploader-info').innerHTML;
 //document.getElementById('watch-uploader-info').innerHTML='<form action="http://www.listentoyoutube.com/process.php" method="post" style="padding:0;float:left;"><input style="display:none;" type="text" name="url" value='+document.location.href+'><button style="margin-bottom:8px;" role="button" type="submit" class="under-movie-div-button yt-uix-button yt-uix-button-text yt-uix-tooltip"><span>Скачать аудио</span></button></form><button onclick="javascript:window.location=\'http://ru.savefrom.net/#url='+document.URL+'\';" style="margin-bottom:8px;" role="button" class="under-movie-div-button yt-uix-button yt-uix-button-text yt-uix-tooltip"><span>Скачать видео</span></button><div style="float:none;"></div>'+document.getElementById('watch-uploader-info').innerHTML;
@@ -73,4 +79,3 @@ document.location.href=document.location.href;
 }}
 
 setInterval(PageChanged, 70);
-
