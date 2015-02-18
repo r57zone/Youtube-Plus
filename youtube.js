@@ -1,4 +1,4 @@
-﻿// ==UserScript==
+// ==UserScript==
 // @name           Youtube Plus
 // @namespace      Youtube Plus
 // @description    Remove ads and tweaks
