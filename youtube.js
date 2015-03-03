@@ -2,7 +2,7 @@
 // @name           Youtube Plus
 // @namespace      Youtube Plus
 // @description    Remove ads and tweaks
-// @version        0.4.2
+// @version        0.4.3
 // @author         https://github.com/r57zone/Youtube-Plus
 // @grant          none
 // @include        http://www.youtube.com/*
@@ -40,7 +40,7 @@ document.location.href='https://www.youtube.com/watch?v='+video_id.substring(0, 
 document.createElement("video").constructor.prototype.canPlayType = function(type){return ""};	
 	
 //Удаление рекламы
-/*(function (fn) {
+(function (fn) {
 if (document.readyState == "loading") {
 addEventListener("DOMContentLoaded", fn, false);
 }else{fn();}
@@ -55,11 +55,11 @@ var player = document.getElementById("movie_player");
 var clean_player = player.cloneNode(true);
 	
 var flash_vars = player.getAttribute("flashvars");
-//flash_vars = flash_vars.replace(/&ad[^&]+/g, "");
-//flash_vars = flash_vars.replace("iv3_module=1", ""); //Удаление аннотации
+flash_vars = flash_vars.replace(/&ad[^&]+/g, "");
+flash_vars = flash_vars.replace("iv3_module=1", ""); //Удаление аннотации
 clean_player.setAttribute("flashvars", flash_vars);
 player.parentNode.replaceChild(clean_player, player);
-});*/
+});
 	
 
 //Добавление кнопок
