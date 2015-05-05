@@ -3,7 +3,7 @@ YouTube Plus
 Youtube Plus - пользовательский скрипт для плагина Greasemonkey.<br>
 * Удаляет рекламу в плеере<br>
 * Заменяет html5 плеер на flash (для встроенных плееров на сайтах - "youtube iframes.js")<br>
-* Добавляет кнопки загрузки видео и аудито<br>
+* Добавляет кнопки загрузки видео и аудио<br>
 * Перенаправляет с главной страницы на ленту подписок<br>
 
 Youtube Plus - userscript for plugin Greasemonkey.
